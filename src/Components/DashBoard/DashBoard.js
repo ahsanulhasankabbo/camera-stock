@@ -1,5 +1,5 @@
 import React from 'react';
-import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, Legend, Line, LineChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, Tooltip, XAxis, YAxis } from 'recharts';
 
 const DashBoard = () => {
     const data = [
@@ -41,35 +41,60 @@ const DashBoard = () => {
         }
     ]
     return (
-        <div>
+        <div className='grid grid-cols-2 mx-10'>
             <div>
-            <LineChart width={400} height={400} data={data}>
-                <Line type="monotone" dataKey={"investment"} stroke="#8884d8" />
-                <Line type="monotone" dataKey={"sell"} stroke="#8884d8" />
-                <Line type="monotone" dataKey={"sevenue"} stroke="#8884d8" />
-                <XAxis dataKey='month'></XAxis>
-            </LineChart>
+                <BarChart width={400} height={400} data={data}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="investment" fill="#8884d8" />
+                    <Bar dataKey="sell" fill="#82ca9d" />
+                    <Bar dataKey="revenue" fill="#82ca9d" />
+                </BarChart>
+            </div>
+            
+            <div>
+                <AreaChart width={400} height={400} data={data}
+                    margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                    <defs>
+                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                        </linearGradient>
+                        <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+                            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+                        </linearGradient>
+                    </defs>
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <Tooltip />
+                    <Area type="monotone" dataKey="investment" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+                    <Area type="monotone" dataKey="sell" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+                    <Area type="monotone" dataKey="revenue" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+                </AreaChart>
             </div>
             <div>
-                <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart
-                        width={500}
-                        height={400}
-                        data={data}
-                        margin={{
-                            top: 10,
-                            right: 30,
-                            left: 0,
-                            bottom: 0,
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Area type="monotone" dataKey="investment" stroke="#8884d8" fill="#8884d8" />
-                    </AreaChart>
-                </ResponsiveContainer>
+                <LineChart width={400} height={400} data={data}>
+                    <Line type="monotone" dataKey={"investment"} stroke="#8884d8" />
+                    <Line type="monotone" dataKey={"sell"} stroke="#8884d8" />
+                    <Line type="monotone" dataKey={"revenue"} stroke="#8884d8" />
+                    <XAxis dataKey='month'></XAxis>
+                </LineChart>
+            </div>
+            <div>
+                <RadarChart outerRadius={90} width={400} height={400} data={data}>
+                    <PolarGrid />
+                    <PolarAngleAxis dataKey="month" />
+                    <PolarRadiusAxis angle={30} domain={[0, 150]} />
+                    <Radar name="Mike" dataKey="investment" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+                    <Radar name="Lily" dataKey="sell" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+                    <Radar name="Lily" dataKey="revenue" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+                    <Legend />
+                </RadarChart>
             </div>
         </div>
     );
