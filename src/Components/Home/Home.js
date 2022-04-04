@@ -11,7 +11,7 @@ const Home = () => {
             <div className='md:flex'>
                 <div className='px-4 md:px-16 md:w-6/12'>
                     <h1 className='text-teal-400 md:text-6xl text-2xl'>Your next Camera</h1>
-                    <h1 className='text-sky-600 md:text-6xl text-2xl'>Your best Camera</h1>
+                    <h1 className='text-sky-600 md:text-6xl text-2xl'>Camera-Store</h1>
                     <p className='my-7 text-xl'>A camera is a piece of equipment that is used for taking photographs, making films, or producing television pictures. Many cameras are now included as part of other digital devices such as phones and tablets.</p>
                     <button className='bg-teal-600 text-white p-3 rounded-lg'>Live demo</button>
                 </div>
