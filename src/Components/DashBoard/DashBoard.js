@@ -41,7 +41,7 @@ const DashBoard = () => {
         }
     ]
     return (
-        <div className='grid grid-cols-2 mx-10'>
+        <div className='grid grid-cols-1 md:grid-cols-2 mx-10'>
             <div>
                 <BarChart width={400} height={400} data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -83,6 +83,7 @@ const DashBoard = () => {
                     <Line type="monotone" dataKey={"sell"} stroke="#8884d8" />
                     <Line type="monotone" dataKey={"revenue"} stroke="#8884d8" />
                     <XAxis dataKey='month'></XAxis>
+                    <YAxis></YAxis>
                 </LineChart>
             </div>
             <div>
