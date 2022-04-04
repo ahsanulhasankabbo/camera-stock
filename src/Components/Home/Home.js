@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useReviews from '../../hooks/useReviews';
 import Review from '../Review/Review';
 import camera from './image/Camera.avif'
@@ -18,7 +19,7 @@ const Home = () => {
                     <img className='w-3/4 mx-auto' src={camera} alt="" />
                 </div>
             </div>
-            <h1 className='md:text-5xl my-10 flex justify-center'>Customers reviews(3)</h1>
+            <h1 className='md:text-5xl my-10 flex justify-center'>Customers reviews (3)</h1>
             <div className='md:flex'>
                 {
                     reviews.slice(0, 3).map(review => <Review
@@ -27,7 +28,8 @@ const Home = () => {
                     ></Review>)
                 }
             </div>
-            <button className='bg-teal-600 text-white p-3 rounded-lg flex mx-auto my-10'>See all reviews</button>
+            <Link to='/reviews'><button className='bg-teal-600 text-white p-3 rounded-lg flex mx-auto my-10'>See all reviews</button></Link>
+            
         </div>
     );
 };
